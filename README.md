@@ -1,4 +1,4 @@
-# Automated importation of high-resolution sea surface temperature data
+# Automated importation of sea surface temperature data
 Matlab functions to import the high-resolution sea surface temperature data from the JPL OurOcean group
 
 ## Summary
