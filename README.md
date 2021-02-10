@@ -3,7 +3,7 @@ Matlab functions to import the high-resolution sea surface temperature data from
 
 ## Summary
 
-The function getSST reads and store the sea surface temperature (SST)  produced on a daily basis by the JPL OurOcean group [1]. The dataset is described in more details in CHao et al. [2]. The SST data are available on a grid of 0.009 degrees, which represent  a horizontal resolution of approximatively  1 km. The second example works with the function borders.m and/or bordersm.m [3,4]
+The function getSST reads and store the sea surface temperature (SST)  produced on a daily basis by the JPL OurOcean group [1]. The dataset is described in more details in Chao et al. [2]. The SST data are available on a grid of 0.009 degrees, which represent  a horizontal resolution of approximatively  1 km. The second example works with the function borders.m and/or bordersm.m [3,4]. This is the first version of the submissin, some bugs may still be rpesent. Credits should go to [1,2] for the dataset.
 
 ## Content
 
