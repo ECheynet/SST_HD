@@ -26,4 +26,4 @@ The repository contains:
 
 The fitting of the extended SEIR model to real data provides the following results:
 
-![SST map of the North Sea](illustration.png)
+![SST map of the North Sea](illustration.jpg)
