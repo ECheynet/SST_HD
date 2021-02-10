@@ -1,9 +1,11 @@
 # Automated importation of sea surface temperature data
 Matlab functions to import the high-resolution sea surface temperature data from the JPL OurOcean group
 
+[![View Automated importation of sea surface temperature data on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://se.mathworks.com/matlabcentral/fileexchange/87222-automated-importation-of-sea-surface-temperature-data)
+
 ## Summary
 
-The function getSST reads and store the sea surface temperature (SST)  produced daily by the JPL OurOcean group [1]. The dataset is described in more details in Chao et al. [2]. The SST data are available on a grid of 0.009 degree, which represents a horizontal resolution of approximatively  1 km. The second example works with the function borders.m and/or bordersm.m [3,4]. This is the first version of the submission, some bugs may still be present. Credits should go to [1,2] for the dataset.
+The function getSST reads and store the sea surface temperature (SST)  produced daily by the JPL OurOcean group [1]. The dataset is described in more details in Chao et al. [2]. The SST data are available on a grid of 0.009 degree, which represents a horizontal resolution of approximatively  1 km. In the documentation, the second example uses with the function borders.m and/or bordersm.m [3,4]. This is the first version of the submission, some bugs may still be present. Credits should go to [1,2] for the dataset.
 
 ## Content
 
