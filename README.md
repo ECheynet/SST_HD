@@ -2,6 +2,7 @@
 Matlab functions to import the high-resolution sea surface temperature data from the JPL OurOcean group
 
 [![View Automated importation of sea surface temperature data on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://se.mathworks.com/matlabcentral/fileexchange/87222-automated-importation-of-sea-surface-temperature-data)
+[![DOI](https://zenodo.org/badge/337693090.svg)](https://zenodo.org/badge/latestdoi/337693090)
 
 ## Summary
 
