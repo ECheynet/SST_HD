@@ -11,7 +11,6 @@ The function getSST reads and store the sea surface temperature (SST)  produced 
 ## Content
 
 The repository contains:
-  - The function getFilesName, which extract the address of the netcdf files containing the SST data
   - The function getSST, which read the netcdf files and extract the SST data, time and corresponding coordinates
   - An example within the Matlab livescript Documentation.mlx
   
