@@ -1,4 +1,4 @@
-function [SST,time,lon,lat,mask] = getSST(adresse,targetLat,targetLon,targetYEar,targetDay,varargin)
+function [SST,time,lon,lat,mask] = getSST(targetLat,targetLon,targetYear,targetDay,varargin)
 % [SST,mask,time] = getSST(adresse,targetLat,targetLon,targetYEar,
 % targetDay,varargin) collects sea surface semperature (SST) data from the
 % High Resolution Sea Surface Temperature (GHRSST) Level 4 sea surface
@@ -43,35 +43,26 @@ p.parse(varargin{:});
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 errMax = p.Results.errMax ; % maximal error in km between target and found location
 resolution = p.Results.resolution ; % default value is 0.01 deg
-
-% Preallocation
-time = NaT(numel(targetYEar)*numel(targetDay),1);
-
-
 [lon,lat] = meshgrid(targetLon(1):resolution:targetLon(end),targetLat(1):resolution:targetLat(end));
 [Nlat,Nlon]=size(lat);
-SST = NaN(numel(targetYEar)*numel(targetDay),Nlat,Nlon);
-oo= 1;
-for jj=1:numel(targetYEar)
-    for kk=1:numel(targetDay)
-        tic
-        if targetDay(kk)<10
-            myDay = ['00',num2str(targetDay(kk))];
-        elseif targetDay(kk)<100 && targetDay(kk)>=10
-            myDay = ['0',num2str(targetDay(kk))];
-        else
-            myDay = num2str(targetDay(kk));
-        end
-        url = [adresse,'/',num2str(targetYEar(jj)),'/',myDay,'/'];
-        fprintf(['target url: ',url,' \n']);
-        [filename] = getFilesName(url);
-        urldat = [adresse,'/',num2str(targetYEar(jj)),'/',myDay,'/',filename{1}];
-        [SST(oo,:,:),time(oo),mask] = readSST(urldat,lon,lat,errMax);
-        oo=oo+1;
-        toc
-    end
-end
 
+
+if targetDay<10
+    myDay = ['00',num2str(targetDay)];
+elseif targetDay<100 && targetDay>=10
+    myDay = ['0',num2str(targetDay)];
+else
+    myDay = num2str(targetDay);
+end
+myYear = num2str(targetYear);
+[~,myMonth,myDay0] = datevec(datetime('1-Jan-0001')+targetDay(1)-1);
+mydate = datestr(datetime(targetYear,myMonth,myDay0),'YYYYmmDD');
+
+
+urldat = ['https://www.ncei.noaa.gov/thredds-ocean/dodsC/ghrsst/L4/' ...
+    'GLOB/JPL/MUR/',myYear,'/',myDay,'/',mydate,'090000-JPL-L4_GHRSST-SSTfnd-MUR-GLOB-v02.0-fv04.1.nc'];
+
+[SST,time,mask] = readSST(urldat,lon,lat,errMax);
 
 %% Nested function
     function [SST,time,mask] = readSST(urldat,lon,lat,errMax)
@@ -186,30 +177,6 @@ end
         a=sind((ll2(1)-ll1(1))/2)^2 + cosd(ll1(1))*cosd(ll2(1)) * sind((ll2(2)-ll1(2))/2)^2;
         c=2*atan2(sqrt(a),sqrt(1-a));
         d=6371*c;
-    end
-
-%% Read the HTML source code
-    function  [filename] = getFilesName(url)
-        
-        indMin = 57;
-        
-        try
-            str = urlread(url);
-            txt = regexprep(str,'<script.*?/script>','');
-            txt = regexprep(txt,'<style.*?/style>','');
-            txt = regexprep(txt,'<.*?>','');
-            idx    = strfind(txt, '.nc');
-            if ~isempty(idx)
-                clear filename
-                for ii=1:numel(idx)
-                    filename{ii} = [strtrim(txt(idx(ii)-indMin:idx(ii)-1)),'.nc'];
-                end
-                filename  = unique(filename(:));
-            end
-        catch exception
-            fprintf([url1,' not found \n'])
-        end
-        
     end
 
 end
